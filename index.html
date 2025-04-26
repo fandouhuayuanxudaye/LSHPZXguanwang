@@ -2,9 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.secondary_header li').forEach(item => {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', function() {
+        const url = this.getAttribute('data-href');
+        if(url.startsWith('http')) {
+          window.open(url, '_blank');
+        } else {
+          window.location.href = url;
+        }
+      });
+      // 添加触控支持
+      item.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        const url = this.getAttribute('data-href');
+        if(url.startsWith('http')) {
+          window.open(url, '_blank');
+        } else {
+          window.location.href = url;
+        }
+      });
+    });
+  });
+  </script>
+  
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>坎巴拉球立里山黄埔中学</title>
+<title>Simple Theme</title>
 <link href="css/multiColumnTemplate.css" rel="stylesheet" type="text/css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,7 +48,7 @@
     <td>&nbsp;</td>
   </tr>
 </table>
-<h1 class="title"> 坎巴拉球立里山黄埔中学官网&nbsp;</h1>
+<h1 class="title"><img src="images//xyz.png" width="200" height="" alt=""/> 坎巴拉球立里山黄埔中学官网&nbsp;</h1>
     </div>
     <nav class="secondary_header" id="menu">
       <ul>
