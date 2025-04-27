@@ -3,34 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.secondary_header li').forEach(item => {
-      item.style.cursor = 'pointer';
-      item.addEventListener('click', function() {
-        const url = this.getAttribute('data-href');
-        if(url.startsWith('http')) {
-          window.open(url, '_blank');
-        } else {
-          window.location.href = url;
-        }
-      });
-      // 添加触控支持
-      item.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        const url = this.getAttribute('data-href');
-        if(url.startsWith('http')) {
-          window.open(url, '_blank');
-        } else {
-          window.location.href = url;
-        }
-      });
-    });
-  });
+document.addEventListener('DOMContentLoaded', function() {
+function handleNavigation(url) {
+if (url.startsWith('http')) {
+window.open(url, '_blank');
+} else {
+window.location.href = url;
+}
+}
+
+document.querySelectorAll('.secondary_header li').forEach(item => {
+item.style.cursor = 'pointer';
+item.style.userSelect = 'none'; // 通过JS动态添加防选中样式
+
+// 点击事件
+item.addEventListener('click', function() {
+handleNavigation(this.getAttribute('data-href'));
+});
+
+// 触控事件
+item.addEventListener('touchstart', function(e) {
+e.preventDefault();
+});
+
+item.addEventListener('touchend', function(e) {
+e.preventDefault();
+handleNavigation(this.getAttribute('data-href'));
+});
+});
+});
   </script>
   
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Simple Theme</title>
+<title>里山黄埔中学官网</title>
 <link href="css/multiColumnTemplate.css" rel="stylesheet" type="text/css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,11 +54,11 @@
     <td>&nbsp;</td>
   </tr>
 </table>
-<h1 class="title"><img src="images//xyz.png" width="68" height="63" alt=""/> 坎巴拉球立里山黄埔中学官网&nbsp;</h1>
+<h1 class="title"><img src="https://pic1.imgdb.cn/item/680e393e58cb8da5c8d0574e.png" width="68" height="63" alt=""/> 坎巴拉球立里山黄埔中学官网&nbsp;</h1>
     </div>
     <nav class="secondary_header" id="menu">
       <ul>
-        <nav class="secondary_header" id="Menu">
+        <nav class="secondary_header" id="menu">
           <ul>
             <li data-href="campus.html">校园实景</li>
             <li data-href="activities.html">活动</li>
